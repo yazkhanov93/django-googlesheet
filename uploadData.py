@@ -12,7 +12,7 @@ scope = [
 'https://www.googleapis.com/auth/drive'
 ]
 def get_info():
-    creds = ServiceAccountCredentials.from_json_keyfile_name('cred.json', scope)
+    creds = ServiceAccountCredentials.from_json_keyfile_name('credential.json', scope)
 
     client = gspread.authorize(creds)
 
@@ -20,7 +20,7 @@ def get_info():
 
     data = sheet.get_all_records()
     df = pd.DataFrame(data)
-    df["стоимость в руб"] = df["стоимость,$"] * 3.5
+    df["стоимость в руб"] = df["стоимость,$"] * 1
     # data = df.to_json(orient="records")
     print(df)
 
