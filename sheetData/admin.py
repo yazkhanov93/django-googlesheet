@@ -4,4 +4,4 @@ from .models import Order
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['orderId', 'priceDol', 'priceRub', 'deliveryTime']
+    list_display = ['orderNumber','orderId', 'priceUSD', 'priceRUB', 'deliveryTime']

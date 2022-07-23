@@ -1,13 +1,11 @@
+import pandas as pd
 import requests
- 
-def main():
-	res = requests.get("http://data.fixer.io/api/latest?access_key=dd44405658a1e71fd1d896a14a76f32d&base=EUR&symbols=CNY")
-	if res.status_code != 200:
-		raise Exception("ERROR: API rquest unsuccessful.")
-	data = res.json()
-	print(data)
- 
-if __name__ == "__main__":
-	main()
+import json
 
-
+df = pd.read_html("https://www.cbr.ru/eng/currency_base/daily/")
+data = df[0]
+data = data.rename(columns={"Num сode":"Num Code","Char сode":"Char Code", "Rate":"Rate"}) # I renamed columns because it does not work otherwise
+data = data.to_dict(orient="records")
+for i in data:
+    if i["Char Code"]=="USD":
+        print(i["Rate"])
