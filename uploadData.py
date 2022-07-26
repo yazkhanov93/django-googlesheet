@@ -36,7 +36,7 @@ def get_info():
         print("orders already exist or no internet connection")
     
 
-schedule.every(10).seconds.do(get_info)
+schedule.every(25).seconds.do(get_info)
 
 while 1:
     schedule.run_pending()
